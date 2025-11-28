@@ -42,42 +42,50 @@
 
         <nav class="flex-1 px-3 py-4 space-y-1">
 
-            {{-- DASHBOARD --}}
-            <a href="{{ route('dashboard') }}"
-               class="flex items-center gap-3 p-3 rounded-md transition-all
-               {{ request()->is('dashboard') ? 'bg-gray-800 text-white shadow-md' : 'hover:bg-gray-800/60' }}">
-                <span>🏠</span> <span>Dashboard</span>
-            </a>
+{{-- DASHBOARD --}}
+<a href="{{ route('dashboard') }}"
+   class="flex items-center gap-3 p-3 rounded-md transition-all
+   {{ request()->is('dashboard') ? 'bg-gray-800 text-white shadow-md' : 'hover:bg-gray-800/60' }}">
+    <span>🏠</span> <span>Dashboard</span>
+</a>
 
-            {{-- TASKS --}}
-            <a href="{{ route('tasks.index') }}"
-               class="flex items-center gap-3 p-3 rounded-md transition-all
-               {{ request()->is('tasks*') ? 'bg-gray-800 text-white shadow-md' : 'hover:bg-gray-800/60' }}">
-                <span>📝</span> <span>Tasks</span>
-            </a>
+{{-- TASKS --}}
+<a href="{{ route('tasks.index') }}"
+   class="flex items-center gap-3 p-3 rounded-md transition-all
+   {{ request()->is('tasks*') ? 'bg-gray-800 text-white shadow-md' : 'hover:bg-gray-800/60' }}">
+    <span>📝</span> <span>Tasks</span>
+</a>
 
-            {{-- CATEGORIES --}}
-            <a href="{{ route('categories.index') }}"
-               class="flex items-center gap-3 p-3 rounded-md transition-all
-               {{ request()->is('categories*') ? 'bg-gray-800 text-white shadow-md' : 'hover:bg-gray-800/60' }}">
-                <span>📂</span> <span>Categories</span>
-            </a>
+{{-- CATEGORIES --}}
+<a href="{{ route('categories.index') }}"
+   class="flex items-center gap-3 p-3 rounded-md transition-all
+   {{ request()->is('categories*') ? 'bg-gray-800 text-white shadow-md' : 'hover:bg-gray-800/60' }}">
+    <span>📂</span> <span>Categories</span>
+</a>
 
-            {{-- INVENTORY BARU --}}
-            <a href="{{ route('inventories.index') }}"
-               class="flex items-center gap-3 p-3 rounded-md transition-all
-               {{ request()->is('inventories*') ? 'bg-gray-800 text-white shadow-md' : 'hover:bg-gray-800/60' }}">
-                <span>📦</span> <span>Inventory</span>
-            </a>
+{{-- INVENTORY --}}
+<a href="{{ route('inventories.index') }}"
+   class="flex items-center gap-3 p-3 rounded-md transition-all
+   {{ request()->is('inventories*') ? 'bg-gray-800 text-white shadow-md' : 'hover:bg-gray-800/60' }}">
+    <span>📦</span> <span>Inventory</span>
+</a>
 
-            {{-- PROFILE --}}
-            <a href="{{ route('profile.edit') }}"
-               class="flex items-center gap-3 p-3 rounded-md transition-all
-               {{ request()->is('profile') ? 'bg-gray-800 text-white shadow-md' : 'hover:bg-gray-800/60' }}">
-                <span>👤</span> <span>Profile</span>
-            </a>
+{{-- EXPENSE TRACKER (FITUR BARU) --}}
+<a href="{{ route('expenses.index') }}"
+   class="flex items-center gap-3 p-3 rounded-md transition-all
+   {{ request()->is('expenses*') ? 'bg-gray-800 text-white shadow-md' : 'hover:bg-gray-800/60' }}">
+    <span>💰</span> <span>Expense Tracker</span>
+</a>
 
-        </nav>
+{{-- PROFILE --}}
+<a href="{{ route('profile.edit') }}"
+   class="flex items-center gap-3 p-3 rounded-md transition-all
+   {{ request()->is('profile') ? 'bg-gray-800 text-white shadow-md' : 'hover:bg-gray-800/60' }}">
+    <span>👤</span> <span>Profile</span>
+</a>
+
+</nav>
+
 
         <!-- FOOTER SIDEBAR -->
         <div class="p-4 border-t border-gray-800 text-sm">

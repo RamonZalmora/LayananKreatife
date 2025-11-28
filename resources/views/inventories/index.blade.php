@@ -1,137 +1,198 @@
 <x-app-layout :title="'Inventory'">
 
-    <div class="py-6">
+    <div class="py-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
-            <h1 class="text-2xl font-bold mb-4">Inventory / Barang Pribadi</h1>
 
+            {{-- HEADER --}}
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-white">Inventory / Barang Pribadi</h1>
+
+                <button 
+                    onclick="document.getElementById('addModal').classList.remove('hidden')"
+                    class="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 shadow-lg transition">
+                    + Tambah Barang
+                </button>
+            </div>
+
+            {{-- SUCCESS ALERT --}}
             @if(session('success'))
-                <div class="p-3 bg-green-200 text-green-800 rounded mb-4">
+                <div class="p-4 bg-green-200 text-green-900 rounded-lg mb-6 shadow">
                     {{ session('success') }}
                 </div>
             @endif
 
-            <!-- Tambah Barang -->
-            <button 
-                onclick="document.getElementById('addModal').classList.remove('hidden')"
-                class="bg-blue-600 text-white px-4 py-2 rounded mb-4">
-                Tambah Barang
-            </button>
+            {{-- GRID ITEMS --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- Grid Items -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 @foreach($inventories as $item)
-                    <div class="bg-white p-4 rounded shadow">
+                    <div class="bg-white rounded-xl shadow-lg p-5 hover:shadow-2xl hover:scale-[1.02] transition">
+
+                        {{-- IMAGE --}}
                         @if($item->image)
-                            <img src="{{ Storage::url($item->image) }}" class="w-full h-40 object-cover rounded mb-3">
+                            <img src="{{ Storage::url($item->image) }}"
+                                 class="w-full h-48 object-cover rounded-lg mb-4 shadow">
                         @endif
 
-                        <h3 class="text-lg font-bold">{{ $item->name }}</h3>
-                        <p class="text-gray-500 text-sm">{{ $item->category }}</p>
-                        <p class="text-sm mt-2">{{ $item->description }}</p>
+                        {{-- NAME --}}
+                        <h3 class="text-xl font-bold mb-1 text-gray-800">{{ $item->name }}</h3>
 
-                        <div class="mt-3 flex justify-between items-center">
-                            <span class="font-bold">Rp {{ number_format($item->price,0,',','.') }}</span>
-                            <span class="px-2 py-1 bg-gray-100 rounded text-sm">{{ ucfirst($item->condition) }}</span>
+                        {{-- CATEGORY --}}
+                        <span class="inline-block bg-blue-100 text-blue-700 text-sm px-3 py-1 rounded-full mb-3">
+                            {{ $item->category }}
+                        </span>
+
+                        {{-- DESCRIPTION --}}
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            {{ $item->description }}
+                        </p>
+
+                        {{-- PRICE + CONDITION --}}
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xl font-bold text-green-700">
+                                Rp {{ number_format($item->price,0,',','.') }}
+                            </span>
+
+                            <span class="px-3 py-1 text-sm rounded-full 
+                                @if($item->condition == 'new') bg-green-200 text-green-800 
+                                @elseif($item->condition == 'good') bg-blue-200 text-blue-800
+                                @elseif($item->condition == 'used') bg-yellow-200 text-yellow-800
+                                @else bg-red-200 text-red-800 @endif
+                            ">
+                                {{ ucfirst($item->condition) }}
+                            </span>
                         </div>
 
-                        <div class="mt-3 flex gap-2">
-                            <!-- Edit -->
+                        {{-- ACTION BUTTONS --}}
+                        <div class="flex gap-3">
+
+                            {{-- EDIT --}}
                             <button 
                                 onclick="editInventory({{ $item->id }})"
-                                class="bg-yellow-400 text-black px-3 py-1 rounded">
-                                Edit
+                                class="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-lg text-center transition shadow">
+                                ✏️ Edit
                             </button>
 
-                            <!-- Delete -->
-                            <form action="{{ route('inventories.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin?')">
+                            {{-- DELETE --}}
+                            <form class="flex-1"
+                                action="{{ route('inventories.destroy', $item->id) }}" 
+                                method="POST" 
+                                onsubmit="return confirm('Yakin ingin menghapus barang ini?')">
+
                                 @csrf
                                 @method('DELETE')
-                                <button class="bg-red-500 text-white px-3 py-1 rounded">Hapus</button>
+
+                                <button class="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition shadow">
+                                    🗑️ Hapus
+                                </button>
                             </form>
+
                         </div>
+
                     </div>
                 @endforeach
+
             </div>
 
-            <div class="mt-4">
+            {{-- PAGINATION --}}
+            <div class="mt-6">
                 {{ $inventories->links() }}
             </div>
 
         </div>
     </div>
 
-    <!-- Modal Tambah -->
+    {{-- MODAL TAMBAH BARANG --}}
     <div id="addModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-        <div class="bg-white p-6 rounded w-full max-w-xl">
-            <h2 class="text-xl font-bold mb-3">Tambah Barang</h2>
+        <div class="bg-white p-8 rounded-xl w-full max-w-xl shadow-2xl animate-fade-in">
+
+            <h2 class="text-2xl font-bold mb-5 text-gray-800">Tambah Barang</h2>
 
             <form action="{{ route('inventories.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <input type="text" name="name" class="border p-2 rounded" placeholder="Nama" required>
-                    <input type="text" name="sku" class="border p-2 rounded" placeholder="SKU">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                    <input type="text" name="category" class="border p-2 rounded" placeholder="Kategori">
-                    <input type="number" name="price" class="border p-2 rounded" placeholder="Harga">
+                    <input type="text" name="name" placeholder="Nama Barang" class="border p-3 rounded-lg" required>
+                    <input type="text" name="sku" placeholder="SKU" class="border p-3 rounded-lg">
+                    <input type="text" name="category" placeholder="Kategori" class="border p-3 rounded-lg">
+                    <input type="number" name="price" placeholder="Harga" class="border p-3 rounded-lg">
 
-                    <input type="number" name="quantity" class="border p-2 rounded" placeholder="Jumlah" value="1">
+                    <input type="number" value="1" name="quantity" placeholder="Jumlah" class="border p-3 rounded-lg">
 
-                    <select name="condition" class="border p-2 rounded">
+                    <select name="condition" class="border p-3 rounded-lg">
                         <option value="new">Baru</option>
                         <option value="good">Bagus</option>
                         <option value="used">Bekas</option>
                         <option value="broken">Rusak</option>
                     </select>
 
-                    <textarea name="description" class="border p-2 rounded md:col-span-2" rows="3" placeholder="Deskripsi"></textarea>
+                    <textarea name="description" rows="3" class="border p-3 rounded-lg md:col-span-2" placeholder="Deskripsi"></textarea>
 
-                    <input type="file" name="image" class="border p-2 rounded md:col-span-2">
+                    <input type="file" name="image" class="border p-3 rounded-lg md:col-span-2">
                 </div>
 
-                <div class="mt-4 flex justify-end gap-2">
-                    <button type="button" onclick="document.getElementById('addModal').classList.add('hidden')" class="px-4 py-2 border rounded">Batal</button>
-                    <button class="px-4 py-2 bg-blue-600 text-white rounded">Simpan</button>
+                <div class="mt-5 flex justify-end gap-3">
+                    <button 
+                        type="button"
+                        onclick="document.getElementById('addModal').classList.add('hidden')"
+                        class="px-5 py-2 rounded border shadow">
+                        Batal
+                    </button>
+
+                    <button class="px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">
+                        Simpan
+                    </button>
                 </div>
+
             </form>
         </div>
     </div>
 
-    <!-- Modal Edit (AJAX) -->
+    {{-- MODAL EDIT --}}
     <div id="editModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-        <div class="bg-white p-6 rounded w-full max-w-xl">
-            <h2 class="text-xl font-bold mb-3">Edit Barang</h2>
+        <div class="bg-white p-8 rounded-xl w-full max-w-xl shadow-2xl animate-fade-in">
+
+            <h2 class="text-2xl font-bold mb-5 text-gray-800">Edit Barang</h2>
 
             <form id="editForm" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <input type="text" name="name" id="editName" class="border p-2 rounded">
-                    <input type="text" name="sku" id="editSku" class="border p-2 rounded">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                    <input type="text" name="category" id="editCategory" class="border p-2 rounded">
-                    <input type="number" name="price" id="editPrice" class="border p-2 rounded">
+                    <input type="text" id="editName" name="name" class="border p-3 rounded-lg">
+                    <input type="text" id="editSku" name="sku" class="border p-3 rounded-lg">
 
-                    <input type="number" name="quantity" id="editQuantity" class="border p-2 rounded">
+                    <input type="text" id="editCategory" name="category" class="border p-3 rounded-lg">
+                    <input type="number" id="editPrice" name="price" class="border p-3 rounded-lg">
 
-                    <select name="condition" id="editCondition" class="border p-2 rounded">
+                    <input type="number" id="editQuantity" name="quantity" class="border p-3 rounded-lg">
+
+                    <select id="editCondition" name="condition" class="border p-3 rounded-lg">
                         <option value="new">Baru</option>
                         <option value="good">Bagus</option>
                         <option value="used">Bekas</option>
                         <option value="broken">Rusak</option>
                     </select>
 
-                    <textarea name="description" id="editDescription" class="border p-2 rounded md:col-span-2"></textarea>
+                    <textarea id="editDescription" name="description" rows="3" class="border p-3 rounded-lg md:col-span-2"></textarea>
 
-                    <input type="file" name="image" class="border p-2 rounded md:col-span-2">
+                    <input type="file" name="image" class="border p-3 rounded-lg md:col-span-2">
                 </div>
 
-                <div class="mt-4 flex justify-end gap-2">
-                    <button type="button" onclick="document.getElementById('editModal').classList.add('hidden')" class="px-4 py-2 border rounded">Batal</button>
-                    <button class="px-4 py-2 bg-blue-600 text-white rounded">Update</button>
+                <div class="mt-5 flex justify-end gap-3">
+                    <button 
+                        type="button"
+                        onclick="document.getElementById('editModal').classList.add('hidden')"
+                        class="px-5 py-2 rounded border shadow">
+                        Batal
+                    </button>
+
+                    <button class="px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">
+                        Update
+                    </button>
                 </div>
+
             </form>
         </div>
     </div>
@@ -141,13 +202,13 @@
             fetch(`/inventories/${id}`)
                 .then(res => res.json())
                 .then(data => {
-                    document.getElementById('editName').value = data.name;
-                    document.getElementById('editSku').value = data.sku;
-                    document.getElementById('editCategory').value = data.category;
-                    document.getElementById('editPrice').value = data.price;
-                    document.getElementById('editQuantity').value = data.quantity;
-                    document.getElementById('editCondition').value = data.condition;
-                    document.getElementById('editDescription').value = data.description;
+                    editName.value = data.name;
+                    editSku.value = data.sku;
+                    editCategory.value = data.category;
+                    editPrice.value = data.price;
+                    editQuantity.value = data.quantity;
+                    editCondition.value = data.condition;
+                    editDescription.value = data.description;
 
                     document.getElementById('editForm').action = `/inventories/${id}`;
                     document.getElementById('editModal').classList.remove('hidden');

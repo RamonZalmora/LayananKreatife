@@ -6,11 +6,16 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\ExpenseController;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
+|
+| Semua route web aplikasi diatur di sini.
+| Route yang butuh login diletakkan dalam middleware ['auth','verified'].
+|
 */
 
 // Redirect dari root ke login
@@ -19,23 +24,56 @@ Route::redirect('/', '/login');
 // Routes Auth (Laravel Breeze)
 require __DIR__.'/auth.php';
 
-// Semua route yang butuh login & email verifikasi
+// Semua route yang membutuhkan login & email verified
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    // Dashboard
+    /*
+    |--------------------------------------------------------------------------
+    | DASHBOARD
+    |--------------------------------------------------------------------------
+    */
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
 
-    // Tasks CRUD
+
+    /*
+    |--------------------------------------------------------------------------
+    | TASKS CRUD
+    |--------------------------------------------------------------------------
+    */
     Route::resource('tasks', TaskController::class);
 
-    // Categories CRUD
+
+    /*
+    |--------------------------------------------------------------------------
+    | CATEGORIES CRUD
+    |--------------------------------------------------------------------------
+    */
     Route::resource('categories', CategoryController::class);
 
-    // Inventory CRUD
+
+    /*
+    |--------------------------------------------------------------------------
+    | INVENTORY CRUD
+    |--------------------------------------------------------------------------
+    */
     Route::resource('inventories', InventoryController::class);
 
-    // Profile routes
+
+    /*
+    |--------------------------------------------------------------------------
+    | EXPENSE TRACKER CRUD (Hanya index, store, destroy)
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('expenses', ExpenseController::class)
+        ->only(['index', 'store', 'destroy']);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | PROFILE SETTINGS
+    |--------------------------------------------------------------------------
+    */
     Route::get('/profile', [ProfileController::class, 'edit'])
         ->name('profile.edit');
 
