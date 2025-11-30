@@ -1,59 +1,438 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📋 SmartTask – Smart To-Do & Task Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<div align="center">
 
-## About Laravel
+![SmartTask Banner](https://img.shields.io/badge/SmartTask-Task%20Manager-4F46E5?style=for-the-badge)
+[![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?style=flat-square&logo=laravel)](https://laravel.com)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**SmartTask** adalah aplikasi manajemen tugas modern yang dirancang untuk membantu Anda mengatur, mengelompokkan, dan memonitor aktivitas harian dengan lebih rapi dan efisien.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[Demo](#-demo-akun) • [Fitur](#-fitur-utama) • [Instalasi](#-instalasi) • [Dokumentasi](#-dokumentasi-api)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+</div>
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🎯 Tentang SmartTask
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+SmartTask adalah solusi manajemen tugas yang powerful dan mudah digunakan, dibangun dengan teknologi web modern. Dengan antarmuka yang intuitif dan fitur-fitur canggih, SmartTask membantu Anda tetap produktif dan terorganisir.
 
-## Laravel Sponsors
+### 👥 Cocok untuk:
+- 🎓 Pelajar & Mahasiswa
+- 💼 Profesional & Karyawan
+- 🎨 Freelancer & Creator
+- 👨‍💼 Project Manager
+- ✨ Siapa saja yang ingin meningkatkan produktivitas
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## ✨ Fitur Utama
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 📝 Manajemen Tugas yang Powerful
+- ✅ CRUD lengkap (Create, Read, Update, Delete)
+- 📅 Penentuan deadline dengan calendar picker
+- 🎯 Status tracking: To-Do → In-Progress → Done
+- 🔥 Level prioritas: Low, Medium, High
+- 📊 Progress tracking visual
 
-## Contributing
+### 🗂️ Organisasi dengan Kategori
+- 🏷️ Kategori dinamis (Work, Study, Personal, Urgent, dll)
+- 🎨 Color-coded categories
+- 🔍 Filter dan sort berdasarkan kategori
+- ⚡ Quick filter untuk akses cepat
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### ⏰ Smart Reminder & Deadline Tracker
+- 🔔 Notifikasi tugas mendekati deadline
+- ⚠️ Highlight otomatis untuk tugas overdue
+- 📆 Calendar view untuk overview bulanan
+- ⏱️ Countdown timer untuk task mendesak
 
-## Code of Conduct
+### 🔍 Smart Search & Filter
+- 🔎 Real-time search
+- 🎯 Filter multi-criteria (kategori, status, prioritas, tanggal)
+- 💡 Autocomplete suggestions
+- 📱 Mobile-friendly search interface
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 🎨 Modern UI/UX
+- 🌙 Light & Dark mode dengan smooth transition
+- 📱 Fully responsive (Mobile, Tablet, Desktop)
+- ✨ Smooth animations & transitions
+- 🎯 Clean dan minimalist design
+- ♿ Accessible (WCAG compliant)
 
-## Security Vulnerabilities
+### 👤 User Management
+- 🔐 Secure authentication (Laravel Breeze/Sanctum)
+- 👥 User profile management
+- 🖼️ Photo profile upload
+- 🔒 Password encryption (bcrypt)
+- ✉️ Email verification
+- 🔑 Password reset functionality
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### ⚡ Performance & Security
+- 🚀 Fast loading dengan lazy loading
+- 🔒 CSRF protection
+- 🛡️ XSS prevention
+- 📦 Database query optimization
+- 💾 Efficient caching strategy
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🛠️ Tech Stack
+
+<table>
+<tr>
+<td align="center" width="33%">
+
+### Backend
+![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?style=flat-square&logo=laravel)
+
+RESTful API, Authentication, Database Management
+
+</td>
+<td align="center" width="33%">
+
+### Frontend
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?style=flat-square&logo=tailwind-css)
+
+Responsive UI, Modern Design System
+
+</td>
+<td align="center" width="33%">
+
+### Database
+![MySQL](https://img.shields.io/badge/MySQL-8.x-4479A1?style=flat-square&logo=mysql)
+
+Reliable Data Storage
+
+</td>
+</tr>
+</table>
+
+### Detail Teknologi
+
+| Layer | Teknologi | Fungsi |
+|-------|-----------|--------|
+| **Backend Framework** | Laravel 10 | Core application & business logic |
+| **Template Engine** | Blade | Server-side rendering |
+| **CSS Framework** | TailwindCSS 3 | Utility-first styling |
+| **Database** | MySQL / MariaDB | Data persistence |
+| **JavaScript** | Alpine.js / Vanilla JS | Interactive components |
+| **Authentication** | Laravel Breeze | User authentication system |
+| **File Storage** | Laravel Storage | Profile picture management |
+| **API** | Laravel API Resources | RESTful endpoints |
+| **Validation** | Laravel Form Requests | Input validation |
+
+---
+
+## 🚀 Instalasi
+
+### 📋 Prerequisites
+
+Pastikan sistem Anda memiliki:
+- PHP >= 8.1
+- Composer >= 2.5
+- Node.js >= 18.x & NPM >= 9.x
+- MySQL >= 8.0 atau MariaDB >= 10.x
+- Git
+
+### 📥 Step-by-Step Installation
+
+#### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/USERNAME/SmartTask.git
+cd SmartTask
+```
+
+#### 2️⃣ Install Dependencies
+```bash
+# Install PHP dependencies
+composer install
+
+# Install JavaScript dependencies
+npm install
+```
+
+#### 3️⃣ Environment Configuration
+```bash
+# Copy environment file
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+```
+
+#### 4️⃣ Database Setup
+Edit file `.env` dan sesuaikan konfigurasi database:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=smarttask
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
+
+Buat database baru:
+```bash
+# MySQL
+mysql -u root -p
+CREATE DATABASE smarttask;
+EXIT;
+```
+
+#### 5️⃣ Database Migration & Seeding
+```bash
+# Run migrations
+php artisan migrate
+
+# Seed dengan data sample (opsional)
+php artisan db:seed
+
+# Atau jalankan sekaligus
+php artisan migrate:fresh --seed
+```
+
+#### 6️⃣ Storage Setup
+```bash
+# Create symbolic link untuk storage
+php artisan storage:link
+```
+
+#### 7️⃣ Build Assets
+```bash
+# Development
+npm run dev
+
+# Production
+npm run build
+```
+
+#### 8️⃣ Run Application
+```bash
+# Start Laravel development server
+php artisan serve
+
+# Aplikasi akan berjalan di: http://localhost:8000
+```
+
+### 🐳 Docker Installation (Alternative)
+```bash
+# Coming soon
+docker-compose up -d
+```
+
+---
+
+## 🔐 Demo Akun
+
+Gunakan akun berikut untuk testing (jika menjalankan seeder):
+
+| Role | Email | Password |
+|------|-------|----------|
+| 👤 **User** | user@gmail.com | password123 |
+| 👑 **Admin** | admin@gmail.com | admin12345 |
+
+> ⚠️ **Note**: Jangan gunakan password ini di production!
+
+---
+
+## 📁 Struktur Project
+
+```
+SmartTask/
+├── 📂 app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── TaskController.php      # Task CRUD operations
+│   │   │   ├── CategoryController.php  # Category management
+│   │   │   └── ProfileController.php   # User profile
+│   │   ├── Requests/                   # Form validation
+│   │   └── Middleware/                 # Custom middleware
+│   ├── Models/
+│   │   ├── Task.php                    # Task model
+│   │   ├── Category.php                # Category model
+│   │   └── User.php                    # User model
+│   └── Services/                       # Business logic
+│
+├── 📂 resources/
+│   ├── views/
+│   │   ├── tasks/
+│   │   │   ├── index.blade.php        # Task list
+│   │   │   ├── create.blade.php       # Create task
+│   │   │   ├── edit.blade.php         # Edit task
+│   │   │   └── show.blade.php         # Task detail
+│   │   ├── categories/                # Category views
+│   │   ├── profile/                   # User profile
+│   │   ├── layouts/
+│   │   │   └── app.blade.php          # Main layout
+│   │   └── components/                # Reusable components
+│   ├── css/
+│   └── js/
+│
+├── 📂 routes/
+│   ├── web.php                        # Web routes
+│   ├── api.php                        # API routes
+│   └── auth.php                       # Authentication routes
+│
+├── 📂 database/
+│   ├── migrations/                    # Database migrations
+│   ├── seeders/                       # Database seeders
+│   └── factories/                     # Model factories
+│
+├── 📂 public/
+│   ├── storage/                       # Symlink to storage
+│   └── assets/                        # Static assets
+│
+└── 📂 tests/                          # Unit & Feature tests
+```
+
+---
+
+## 📚 Dokumentasi API
+
+### Authentication
+```http
+POST /api/login
+POST /api/register
+POST /api/logout
+```
+
+### Tasks Endpoints
+```http
+GET    /api/tasks              # Get all tasks
+GET    /api/tasks/{id}         # Get single task
+POST   /api/tasks              # Create new task
+PUT    /api/tasks/{id}         # Update task
+DELETE /api/tasks/{id}         # Delete task
+```
+
+### Example Request
+```javascript
+// Fetch all tasks
+fetch('/api/tasks', {
+    headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    }
+})
+.then(response => response.json())
+.then(data => console.log(data));
+```
+
+### Example Response
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "title": "Complete project documentation",
+            "description": "Write comprehensive docs",
+            "status": "in_progress",
+            "priority": "high",
+            "deadline": "2025-12-31",
+            "category": {
+                "id": 1,
+                "name": "Work",
+                "color": "#3B82F6"
+            }
+        }
+    ]
+}
+```
+
+---
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+php artisan test
+
+# Run specific test suite
+php artisan test --filter TaskTest
+
+# Run with coverage
+php artisan test --coverage
+```
+
+---
+
+## 📸 Screenshots
+
+> 🚧 Coming soon - tambahkan screenshot aplikasi Anda di sini
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] 📱 Mobile app (React Native / Flutter)
+- [ ] 🔔 Push notifications
+- [ ] 👥 Team collaboration features
+- [ ] 📊 Advanced analytics & reports
+- [ ] 🌐 Multi-language support
+- [ ] 🎯 Gamification (badges, points)
+- [ ] 📤 Export to PDF/Excel
+- [ ] 🔄 Task templates
+- [ ] 🤖 AI-powered task suggestions
+
+---
+
+## 🤝 Contributing
+
+Kontribusi sangat diterima! Berikut cara berkontribusi:
+
+1. Fork repository ini
+2. Buat branch baru (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+Baca [CONTRIBUTING.md](CONTRIBUTING.md) untuk detail lebih lanjut.
+
+---
+
+## 📝 License
+
+Project ini menggunakan lisensi **MIT License** - lihat file [LICENSE](LICENSE) untuk detail.
+
+---
+
+## 👨‍💻 Author
+
+**Your Name**
+- GitHub: [@yourusername](https://github.com/yourusername)
+- Email: your.email@example.com
+- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
+
+---
+
+## 🙏 Acknowledgments
+
+- [Laravel](https://laravel.com) - The PHP Framework
+- [TailwindCSS](https://tailwindcss.com) - Utility-first CSS
+- [Heroicons](https://heroicons.com) - Beautiful icons
+- Semua kontributor yang telah membantu project ini
+
+---
+
+## 💬 Support
+
+Jika Anda menemukan bug atau memiliki saran:
+- 🐛 [Report Bug](https://github.com/USERNAME/SmartTask/issues)
+- 💡 [Request Feature](https://github.com/USERNAME/SmartTask/issues)
+- 📧 Email: support@smarttask.com
+
+---
+
+<div align="center">
+
+### ⭐ Jika project ini bermanfaat, berikan Star di GitHub!
+
+**Made with ❤️ using Laravel & TailwindCSS**
+
+[⬆ Back to Top](#-smarttask--smart-to-do--task-management-system)
+
+</div>
